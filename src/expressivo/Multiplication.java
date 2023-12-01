@@ -64,6 +64,37 @@ public class Multiplication implements Expression{
 	        
 	    return new Multiplication(new Variable(variable), this);
 	}
+	@Override public String toString() {
+        String leftString = this.left.toString();
+        String rightString = this.right.toString();
+        leftString = "(" + leftString + ")";
+        rightString = "(" + rightString + ")";
+
+        checkRep();
+        return leftString + "*" + rightString;
+    }  
+    @Override public boolean equals(Object thatObject) {
+        if (thatObject == this) {
+            return true;
+        }
+        if (!(thatObject instanceof Multiplication)) {
+            return false;
+        }
+        Multiplication thatMult = (Multiplication) thatObject;
+
+        checkRep();
+        return this.toString().equals(thatMult.toString());
+    }
+    @Override public int hashCode() {
+        final int prime = 37;
+        int result = 1;
+        
+        result = prime*result + this.left.hashCode();
+        result = prime*result + this.right.hashCode();
+
+        checkRep();
+        return result;
+    }
 
 
 }
