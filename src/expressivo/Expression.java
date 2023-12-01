@@ -89,29 +89,6 @@ public interface Expression {
      *         the head of the expression. The expression is not simplified
      */
     public Expression multiplyVariable(String variable);
-    /**
-     * Adds a number at the start of this expression
-     * 
-     * @param num nonnegative integer or floating-point number
-     * @return the result adding num at the start of this expression.
-     *      If e equals Expression.emptyExpression(), correct to 5 decimal places, 
-     *      the empty expression is returned;
-     *      The expression is not simplified 
-     */
-    public Expression addConstant(double num);
-    /**
-     * Appends a number as a multiplicative factor at the start of this expression
-     * 
-     * @param num nonnegative integer or floating-point number
-     * @return the product expression where num is this expression's coefficient,
-     *         placed at the start of this expression.
-     *      - If e equals Expression.emptyExpression(), correct to 5 decimal places, 
-     *        the empty expression is returned;
-     *      - If e equals Expression.parse("1"), correct to 5 decimal places, this
-     *        expression is returned
-     *      The expression is simplified
-     */
-    public Expression appendCoefficient(double num);
    
     /**
      * Returns a string representation of this expression
