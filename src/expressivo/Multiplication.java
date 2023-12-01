@@ -52,16 +52,5 @@ public class Multiplication implements Expression{
 		return null;
 	}
 
-	@Override
-	public Expression addConstant(double num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Expression appendCoefficient(double num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
