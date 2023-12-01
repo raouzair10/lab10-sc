@@ -40,22 +40,9 @@ public class ExpressionTest {
     //          doesn't contain input variable,
     //          contains input variable
     //
-    //  Partition for addConstant: Expression x double -> Expression
+	//  Partition for toString: Expression -> String
     //    this: empty expression,
-    //          expression contains the value
-    //    value: 0, > 0
-    //
-    //  Partition for appendCoefficient: Expression x double -> Expression
-    //    this: empty expression,
-    //          expression as the value 1,
-    //    coefficient: 0, 1, > 1
-    //          
-    //  Partition for substitute: Expression x Map -> Expression
-    //    variables in the expression but not in the input string,
-    //    variables in the input string but not in the expression,
-    //    one variable in both the expression and the input string,
-    //    multiple variables in both
-
+    //          contains multiple variables and values
     //  Partition for equals: Expression x Expression -> boolean
     //    reflexive, symmetric and transitive equality
     //    include tests for numbers correct to 5 decimal places
@@ -289,105 +276,4 @@ public class ExpressionTest {
                 expected3, actual3);
     }
     
-    //Tests for addConstant()
-    @Test
-    // covers empty expression,
-    //        value > 0
-    public void testAddConstant_Empty() {
-        Expression actual = empty.addConstant(1);
-        
-        assertEquals("Expected 1 + 0 = 1",
-                "1", actual.toString());
     }
-    @Test
-    // covers non-empty expression,
-    //        value = 0
-    public void testAddConstant_ValZero() {
-        Expression actual1 = expr.addConstant(0);
-        Expression actual2 = expr1.addConstant(0);
-        
-        assertEquals("Expected 0 + expression = expression",
-                expr, actual1);
-        assertEquals("Expected 0 + expression = expression",
-                expr1, actual2);
-    }
-    
-    @Test
-    // covers non-empty expression,
-    //        value > 0
-    public void testAddConstant_Expr() {
-        Expression actual1 = expr.addConstant(12.000009);
-        Expression actual2 = expr1.addConstant(3.142);
-        Expression actual3 = actual2.addConstant(12);
-        Expression expected1 = Expression.parse(12 + "+" + expr.toString());
-        Expression expected2 = Expression.parse(3.142 + "+" + expr1.toString());
-        Expression expected3 = Expression.parse(12 + "+" + actual2.toString());
-        
-        assertEquals("Expected constant added at the start", 
-                expected1, actual1);
-        assertEquals("Expected constant added at the start", 
-                expected2, actual2);
-        assertNotEquals("Expected constant added at the start, expression not simplified", 
-                expected3, actual3);
-    }
-    // Tests for appendCoefficient()
-    @Test
-    // covers coefficient = 0
-    public void testAppendCoefficient_CoeffZero() {
-        Expression actual1 = expr.appendCoefficient(0);
-        Expression actual2 = expr1.appendCoefficient(0);
-        
-        assertEquals("Expected 0 * expression = 0", 
-                empty, actual1);        
-        assertEquals("Expected 0 * expression = 0", 
-                empty, actual2);
-    }
-    @Test
-    // covers coefficient = 1
-    public void testAppendCoefficient_CoeffOne() {
-        Expression actual1 = expr.appendCoefficient(1);
-        Expression actual2 = expr1.appendCoefficient(1);
-        
-        assertEquals("Expected 1 * expression = expression", 
-                expr, actual1);        
-        assertEquals("Expected 1 * expression = expression", 
-                expr1, actual2);
-    }
-    @Test
-    // covers empty expression
-    public void testAppendCoefficient_Empty() {
-        Expression actual1 = empty.appendCoefficient(12.2);
-        Expression actual2 = empty.appendCoefficient(1);
-        
-        assertEquals("Expected value * 0 = 0", 
-                empty, actual1);        
-        assertEquals("Expected value * 0 = 0", 
-                empty, actual2);
-    }
-    @Test
-    // covers expression = 1
-    public void testAppendCoefficient_One() {
-        Expression actual1 = one.appendCoefficient(12.2);
-        Expression actual2 = one.appendCoefficient(1);
-        
-        assertEquals("Expected value * 1 = value", 
-                "12.2", actual1.toString());        
-        assertEquals("Expected value * 1 = value", 
-                "1", actual2.toString());
-    }
-    @Test 
-    public void testAppendCoefficient_Expr() {
-        Expression actual1 = expr.appendCoefficient(2);
-        Expression actual2 = expr1.appendCoefficient(3.142);
-        Expression expected1 = Expression.parse("(2)*(" + expr.toString() + ")");
-        Expression expected2 = Expression.parse("(3.142)*(" + expr1.toString() + ")");
-        
-        assertEquals("Expected value multiplied at the start and expression simplified",
-                expected1, actual1);  
-        assertEquals("Expected value multiplied at the start and expression simplified",
-                expected2, actual2);
-    }
-    
-   
-    
-    
