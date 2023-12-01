@@ -30,26 +30,39 @@ public class Multiplication implements Expression{
 	    }
 	@Override
 	public Expression addExpr(Expression e) {
-		// TODO Auto-generated method stub
-		return null;
+		 if (e.equals(new Value(0))) {
+	            return this;
+	        }
+	        if (e.equals(this)) {
+	            return this.multiplyExpr(new Value(2));
+	        }
+	        return new Addition(this, e);
 	}
 
 	@Override
 	public Expression multiplyExpr(Expression e) {
-		// TODO Auto-generated method stub
-		return null;
+		 Value zero = new Value(0);
+	        if (e.equals(zero)) {
+	            return zero;
+	        }
+	        if (e.equals(new Value(1))) {
+	            return this;
+	        }
+	        return new Multiplication(this, e);
 	}
 
 	@Override
 	public Expression addVariable(String variable) {
-		// TODO Auto-generated method stub
-		return null;
+		assert variable != null && variable != "";
+        
+        return new Addition(new Variable(variable), this);
 	}
 
 	@Override
 	public Expression multiplyVariable(String variable) {
-		// TODO Auto-generated method stub
-		return null;
+		 assert variable != null && variable != "";
+	        
+	    return new Multiplication(new Variable(variable), this);
 	}
 
 
