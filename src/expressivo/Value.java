@@ -64,7 +64,7 @@ public class Value implements Expression {
         checkRep();
         return result;
     }
-}
+
     @Override public Expression addExpr(Expression e) {
         if (e.equals(this)) {
             double newNum = this.num * 2;
@@ -118,6 +118,5 @@ public class Value implements Expression {
 
         checkRep();
         return new Multiplication(new Variable(variable), this);
-    }
-    }
-   
+    }   
+}
