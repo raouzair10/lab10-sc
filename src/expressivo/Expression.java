@@ -33,6 +33,7 @@ public interface Expression {
     public static Expression emptyExpression() {
         return new Value(0.0);
     }
+
     /**
      * Appends an expression at the end of this with an addition
      * 
@@ -48,6 +49,7 @@ public interface Expression {
      *      this and e are not modified
      */
     public Expression addExpr(Expression e);
+
     /**
      * Appends an expression at the end of this with a multiplication
      * 
@@ -69,6 +71,7 @@ public interface Expression {
      *      this and e are not modified
      */
     public Expression multiplyExpr(Expression e);
+
     /**
      * Appends a variable at the start of this expression with an addition
      * 
@@ -79,6 +82,7 @@ public interface Expression {
      *                
      */
     public Expression addVariable(String variable);
+
     /**
      * Appends a variable as a multiplicative factor to start of this expression
      * 
@@ -106,6 +110,7 @@ public interface Expression {
      *         for all e:Expression, e.equals(Expression.parse(e.toString())).
      */  
     @Override public String toString();
+
     /**
      * Checks if an object is equal to this addition expression
      * Two expressions are equal if and only if: 
@@ -123,13 +128,13 @@ public interface Expression {
      * Expressions, as defined in the PS3 handout.
      */
     @Override
-    public boolean equals(Object thatObject);  
+    public boolean equals(Object thatObject);
+
     /**
      * @return hash code value consistent with the equals() definition of structural
      * equality, such that for all e1,e2:Expression,
      *     e1.equals(e2) implies e1.hashCode() == e2.hashCode()
      */
     @Override
-    public int hashCode();    
-    
+    public int hashCode();
 }
