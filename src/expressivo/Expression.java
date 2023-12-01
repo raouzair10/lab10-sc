@@ -23,17 +23,15 @@ import org.antlr.v4.runtime.tree.ParseTree;
  */
 public interface Expression {
     
-    // Datatype definition
-    //   TODO
+	// Datatype definition:
+    //   Expression = Value(num:double)
+    //                + Variable(id:String)
+    //                + Addition(left:Expression, right:Expression)
+    //                + Multiplication(left:Expression, right:Expression)
     
-    /**
-     * Parse an expression.
-     * @param input expression to parse, as defined in the PS3 handout.
-     * @return expression AST for the input
-     * @throws IllegalArgumentException if the expression is invalid
-     */
-    public static Expression parse(String input) {
-        throw new RuntimeException("unimplemented");
+	 /** Creates an empty expression such that Expression.parse("0").equals(emptyExpression())  */
+    public static Expression emptyExpression() {
+        return new Value(0.0);
     }
     /**
      * Appends an expression at the end of this with an addition
